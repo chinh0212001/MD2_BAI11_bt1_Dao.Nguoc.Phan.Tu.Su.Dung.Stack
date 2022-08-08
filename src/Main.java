@@ -1,26 +1,32 @@
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Stack<Integer> chinh = new Stack<>();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("nhap so size: ");
 
-        int n = scanner.nextInt();
-        int [] arr = new int[n];
+    public static void main(String[] args) {
+        String str = "đi qua mùa cô đơn !!!";
+        str = str.replaceAll(",", "");
+        String[] arr = str.split(" ");
+        System.out.println(str);
+        System.out.println("------------");
+        Map<String, Integer> map = new TreeMap<String, Integer>();
         for (int i = 0; i < arr.length; i++) {
-            int code = (int) Math.floor((Math.random()*10 )+1);
-            arr[i] = code;
+            arr[i] = arr[i].toUpperCase();
+            String key = arr[i];
+            if (map.containsKey(key)) {
+                int value = map.get(key);
+                map.put(key, value + 1);
+            } else {
+                map.put(key, 1);
+            }
+            System.out.println(" từ khóa " + key + " xuất hiện " + map.get(key));
         }
-        System.out.println(Arrays.toString(arr));
-        for (int i = 0; i < arr.length; i++) {
-            chinh.push(arr[i]);
-        }
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = chinh.pop();
-        }
-        System.out.println(Arrays.toString(arr));
+        Set tapHop = map.keySet();// dùng set để k in ra các phần tử trùng nhau
+//        Iterator i = tapHop.iterator();// dung oterator duyệt phần tử collection
+//        while (i.hasNext()) {//hasNext trả về true nếu có nhiều phần tử kế tiếp đang duyệt
+//            String key = (String) i.next();
+//
+//        }
+
 
     }
 }
